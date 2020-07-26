@@ -1,0 +1,33 @@
+package com.mycompany.octaldecimal;
+
+import java_cup.runtime.*;
+
+class SintaxisOctal;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+    }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+    }
+
+    public Symbol getS(){
+        return this.s;
+    }
+:};
+
+terminal Integer numero;
+
+non terminal Integer OCTAL, DECIMAL;
+
+start with DECIMAL;
+
+DECIMAL ::= DECIMAL:d1 OCTAL:e1 {:RESULT = (d1*8)+ e1;:}
+        | OCTAL:e1 {:RESULT = e1;:}
+;
+
+OCTAL ::= numero:e1 {:RESULT = e1;:}
+;
